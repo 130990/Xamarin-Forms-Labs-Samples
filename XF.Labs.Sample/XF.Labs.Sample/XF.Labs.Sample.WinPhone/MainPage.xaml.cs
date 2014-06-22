@@ -20,6 +20,7 @@ namespace XF.Labs.Sample.WinPhone
             InitializeComponent();
 
             Forms.Init();
+            XF.Labs.Sample.App.Init();
             Content = XF.Labs.Sample.App.GetMainPage().ConvertPageToUIElement(this);
         }
     }

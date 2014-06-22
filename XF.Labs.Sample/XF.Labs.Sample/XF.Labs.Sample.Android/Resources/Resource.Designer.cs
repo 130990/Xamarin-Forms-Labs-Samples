@@ -26,6 +26,8 @@ namespace XF.Labs.Sample.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::XF.Labs.Sample.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::XF.Labs.Sample.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Labs.Droid.Resource.Attribute.state_current_month = global::XF.Labs.Sample.Droid.Resource.Attribute.state_current_month;
 			global::Xamarin.Forms.Labs.Droid.Resource.Attribute.state_highlighted = global::XF.Labs.Sample.Droid.Resource.Attribute.state_highlighted;
 			global::Xamarin.Forms.Labs.Droid.Resource.Attribute.state_range_first = global::XF.Labs.Sample.Droid.Resource.Attribute.state_range_first;
@@ -198,7 +200,19 @@ namespace XF.Labs.Sample.Droid
 			public const int Icon = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int monoandroidsplash = 2130837506;
+			public const int icon_facebook = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int icon_google = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int icon_microsoft = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int icon_twitter = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int monoandroidsplash = 2130837510;
 			
 			static Drawable()
 			{
@@ -259,6 +273,12 @@ namespace XF.Labs.Sample.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f060006
+			public const int ApplicationName = 2131099654;
+			
+			// aapt resource value: 0x7f060005
+			public const int Hello = 2131099653;
 			
 			// aapt resource value: 0x7f060001
 			public const int day_name_format = 2131099649;

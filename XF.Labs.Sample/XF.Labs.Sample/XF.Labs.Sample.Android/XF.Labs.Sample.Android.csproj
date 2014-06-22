@@ -53,6 +53,15 @@
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="SQLite.Net">
+      <HintPath>..\..\packages\SQLite.Net-PCL.2.3.0\lib\portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Async">
+      <HintPath>..\..\packages\SQLite.Net.Async-PCL.2.3.0\lib\portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.XamarinAndroid">
+      <HintPath>..\..\packages\SQLite.Net.Platform.XamarinAndroid.2.3.0\lib\MonoAndroid\SQLite.Net.Platform.XamarinAndroid.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,11 +72,19 @@
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\packages\Xamarin.Forms.1.1.1.6206\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Labs">
-      <HintPath>..\..\packages\Xamarin.Forms.Labs.1.0.1.0\lib\portable-net45+win+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Labs.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Labs, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.Labs.1.0.1.5\lib\portable-net45+win+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Labs.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Labs.Droid">
-      <HintPath>..\..\packages\Xamarin.Forms.Labs.Droid.1.0.1.1\lib\MonoAndroid44\Xamarin.Forms.Labs.Droid.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Labs.Caching.SQLiteNet">
+      <HintPath>..\..\packages\Xamarin.Forms.Labs.Caching.SQLiteNet.1.0.1.0\lib\portable-net45+win+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Labs.Caching.SQLiteNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Labs.Droid, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.Labs.Droid.1.0.1.5\lib\MonoAndroid44\Xamarin.Forms.Labs.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Labs.Services.Serialization.ServiceStackV3.Droid">
+      <HintPath>..\..\packages\Xamarin.Forms.Labs.Services.Serialization.ServiceStackV3.Droid.1.0.1.0\lib\MonoAndroid22\Xamarin.Forms.Labs.Services.Serialization.ServiceStackV3.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform.Android">
       <HintPath>..\..\packages\Xamarin.Forms.1.1.1.6206\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
@@ -91,6 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Drawable\icon_twitter.png" />
+    <AndroidResource Include="Resources\Drawable\icon_facebook.png" />
+    <AndroidResource Include="Resources\Drawable\icon_google.png" />
+    <AndroidResource Include="Resources\Drawable\icon_microsoft.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XF.Labs.Sample\XF.Labs.Sample.csproj">
