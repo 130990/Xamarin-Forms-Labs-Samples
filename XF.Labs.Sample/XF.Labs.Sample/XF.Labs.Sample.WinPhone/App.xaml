@@ -7,6 +7,7 @@
 
     <!--Application Resources-->
     <Application.Resources>
+        <MediaElement x:Key="GlobalMedia"></MediaElement>
         <local:LocalizedStrings xmlns:local="clr-namespace:XF.Labs.Sample.WinPhone" x:Key="LocalizedStrings"/>
     </Application.Resources>
 

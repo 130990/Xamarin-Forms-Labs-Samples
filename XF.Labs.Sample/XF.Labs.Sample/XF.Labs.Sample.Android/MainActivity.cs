@@ -1,13 +1,13 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Xamarin.Forms.Labs.Droid;
 using Xamarin.Forms.Labs.Mvvm;
 using Xamarin.Forms.Labs.Services;
 using Xamarin.Forms.Labs.Services.Serialization;
 using Xamarin.Forms.Labs.Caching.SQLiteNet;
 using System.IO;
 using Xamarin.Forms.Labs;
+using Xamarin.Forms.Labs.Droid;
 
 
 namespace XF.Labs.Sample.Droid
@@ -52,7 +52,7 @@ namespace XF.Labs.Sample.Droid
 
             resolverContainer.Register<IDevice>(t => AndroidDevice.CurrentDevice)
                 .Register<IDisplay>(t => t.Resolve<IDevice>().Display)
-                .Register<IJsonSerializer, Xamarin.Forms.Labs.Services.Serialization.ServiceStackV3.JsonSerializer>()
+                .Register<IJsonSerializer, Xamarin.Forms.Labs.Services.Serialization.JsonNET.JsonSerializer>()
                 .Register<IDependencyContainer>(resolverContainer)
                 .Register<IXFormsApp>(app)
                 .Register<ISimpleCache>(t => new SQLiteSimpleCache(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(),

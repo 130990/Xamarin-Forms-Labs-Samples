@@ -9,6 +9,8 @@ using Xamarin.Forms.Labs.Controls;
 using Xamarin.Forms.Labs.Mvvm;
 using Xamarin.Forms.Labs.Services;
 using XF.Labs.Sample.Pages.Controls;
+using XF.Labs.Sample.Pages.Controls.DynamicList;
+using XF.Labs.Sample.Pages.Services;
 
 namespace XF.Labs.Sample
 {
@@ -47,6 +49,7 @@ namespace XF.Labs.Sample
             ViewFactory.Register<GeolocatorPage, GeolocatorViewModel>();
             ViewFactory.Register<CameraPage, CameraViewModel>();
             ViewFactory.Register<CacheServicePage, CacheServiceViewModel>();
+            ViewFactory.Register<SoundPage, SoundServiceViewModel>();
 
             var mainTab = new ExtendedTabbedPage() { Title = "Xamarin Forms Labs" };
             var mainPage = new NavigationPage(mainTab);
@@ -54,7 +57,7 @@ namespace XF.Labs.Sample
 
             var controls = GetControlsPage(mainPage);
             var services = GetServicesPage(mainPage);
-            var mvvm = ViewFactory.CreatePage(typeof(MvvmSampleViewModel));
+            var mvvm = ViewFactory.CreatePage<MvvmSampleViewModel>();
             mainTab.Children.Add(controls);
             mainTab.Children.Add(services);
             mainTab.Children.Add(mvvm);
@@ -72,46 +75,49 @@ namespace XF.Labs.Sample
             var services = new ContentPage { Title = "Services" };
             var lstServices = new ListView
             {
-                ItemsSource = new List<string>()
-				{
-					"TextToSpeech",
-					"DeviceExtended",
-					"PhoneService",
-					"GeoLocator",
-					"Camera",
-					"Accelerometer",
-					"Display",
-					"Cache"
-				}
+                ItemsSource = new List<string>() {
+                    "TextToSpeech",
+                    "DeviceExtended",
+                    "PhoneService",
+                    "GeoLocator",
+                    "Camera",
+                    "Accelerometer",
+                    "Display",
+                    "Cache",
+                    "Sound"
+                }
             };
 
-            lstServices.ItemSelected += (sender, e) =>
+            lstServices.ItemSelected += async (sender, e) =>
             {
                 switch (e.SelectedItem.ToString().ToLower())
                 {
                     case "texttospeech":
-                        mainPage.Navigation.PushAsync(new TextToSpeechPage());
+                        await mainPage.Navigation.PushAsync(new TextToSpeechPage());
                         break;
                     case "deviceextended":
-                        mainPage.Navigation.PushAsync(new ExtendedDeviceInfoPage(Resolver.Resolve<IDevice>()));
+                        await mainPage.Navigation.PushAsync(new ExtendedDeviceInfoPage(Resolver.Resolve<IDevice>()));
                         break;
                     case "phoneservice":
-                        mainPage.Navigation.PushAsync(new PhoneServicePage());
+                        await mainPage.Navigation.PushAsync(new PhoneServicePage());
                         break;
                     case "geolocator":
-                        mainPage.Navigation.PushAsync(ViewFactory.CreatePage(typeof(GeolocatorViewModel)));
+                        await mainPage.Navigation.PushAsync(ViewFactory.CreatePage<GeolocatorViewModel>());
                         break;
                     case "camera":
-                        mainPage.Navigation.PushAsync(ViewFactory.CreatePage(typeof(CameraViewModel)));
+                        await mainPage.Navigation.PushAsync(ViewFactory.CreatePage<CameraViewModel>());
                         break;
                     case "accelerometer":
-                        mainPage.Navigation.PushAsync(new AcceleratorSensorPage());
+                        await mainPage.Navigation.PushAsync(new AcceleratorSensorPage());
                         break;
                     case "display":
-                        mainPage.Navigation.PushAsync(new AbsoluteLayoutWithDisplayInfoPage(Resolver.Resolve<IDisplay>()));
+                        await mainPage.Navigation.PushAsync(new AbsoluteLayoutWithDisplayInfoPage(Resolver.Resolve<IDisplay>()));
                         break;
                     case "cache":
-                        mainPage.Navigation.PushAsync(ViewFactory.CreatePage(typeof(CacheServiceViewModel)));
+                        await mainPage.Navigation.PushAsync(ViewFactory.CreatePage<CacheServiceViewModel>());
+                        break;
+                    case "sound":
+                        await mainPage.Navigation.PushAsync(ViewFactory.CreatePage<SoundServiceViewModel>());
                         break;
                     default:
                         break;
@@ -131,40 +137,48 @@ namespace XF.Labs.Sample
             var controls = new ContentPage { Title = "Controls" };
             var lstControls = new ListView
             {
-                ItemsSource = new List<string>()
-				{
-					"Calendar",
-					"Autocomplete",
-					"Buttons",
-					"Labels",
-					"Cells",
-					"HybridWebView"
-				}
+                ItemsSource = new List<string>() {
+                    "Calendar",
+                    "Autocomplete",
+                    "Buttons",
+                    "Labels",
+                    "Cells",
+                    "HybridWebView",
+                    "WebImage",
+                    "DynamicListView",
+                    "GridView"
+                }
             };
-            lstControls.ItemSelected += (sender, e) =>
+            lstControls.ItemSelected += async (sender, e) =>
             {
                 switch (e.SelectedItem.ToString().ToLower())
                 {
                     case "calendar":
-                        mainPage.Navigation.PushAsync(new CalendarPage());
+                        await mainPage.Navigation.PushAsync(new CalendarPage());
                         break;
                     case "autocomplete":
-                        Device.OnPlatform(
-                            () => mainPage.Navigation.PushAsync(new AutoCompletePage()),
-                            () => mainPage.Navigation.PushAsync(new AutoCompletePage()),
-                            () => mainPage.Navigation.PushAsync(new AutoCompletePage()));
+                        await mainPage.Navigation.PushAsync(new AutoCompletePage());
                         break;
                     case "buttons":
-                        mainPage.Navigation.PushAsync(new ButtonPage());
+                        await mainPage.Navigation.PushAsync(new ButtonPage());
                         break;
                     case "labels":
-                        mainPage.Navigation.PushAsync(new ExtendedLabelPage());
+                        await mainPage.Navigation.PushAsync(new ExtendedLabelPage());
                         break;
                     case "cells":
-                        mainPage.Navigation.PushAsync(new ExtendedCellPage());
+                        await mainPage.Navigation.PushAsync(new ExtendedCellPage());
                         break;
                     case "hybridwebview":
-                        mainPage.Navigation.PushAsync(new CanvasWebHybrid());
+                        await mainPage.Navigation.PushAsync(new CanvasWebHybrid());
+                        break;
+                    case "webimage":
+                         await mainPage.Navigation.PushAsync(new WebImagePage());
+                        break;
+                    case "dynamiclistview":
+                        await mainPage.Navigation.PushAsync(new DynamicListView());
+                        break;
+                    case "gridview":
+                        await mainPage.Navigation.PushAsync(new GridViewPage());
                         break;
                     default:
                         break;
@@ -173,5 +187,6 @@ namespace XF.Labs.Sample
             controls.Content = lstControls;
             return controls;
         }
+
     }
 }

@@ -8,13 +8,14 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using XF.Labs.Sample.WinPhone.Resources;
 using Xamarin.Forms.Labs.Services;
-using Xamarin.Forms.Labs.WP;
 using Xamarin.Forms.Labs;
 using Xamarin.Forms.Labs.Services.Serialization;
 using Windows.Storage;
 using System.Threading.Tasks;
-using Xamarin.Forms.Labs.Caching.SQLiteNet;
 using Xamarin.Forms.Labs.Mvvm;
+using Xamarin.Forms.Labs.WP8;
+using Xamarin.Forms.Labs.Caching.SQLiteNet;
+using System.IO;
 
 namespace XF.Labs.Sample.WinPhone
 {
@@ -74,25 +75,22 @@ namespace XF.Labs.Sample.WinPhone
             var app = new XFormsAppWP();
 
             app.Init(this);
-            var pathToDatabase = await GetPathForFileAsync("xforms.db");
+           
+            var documents = app.AppDataDirectory;
+            var pathToDatabase = Path.Combine(documents, "xforms.db");
 
             resolverContainer.Register<IDevice>(t => WindowsPhoneDevice.CurrentDevice)
                 .Register<IDisplay>(t => t.Resolve<IDevice>().Display)
-                .Register<IJsonSerializer, Xamarin.Forms.Labs.Services.Serialization.ServiceStackV3.JsonSerializer>()
-                .Register<IXFormsApp>(app).
-                Register<ISimpleCache>(t => new SQLiteSimpleCache(new SQLite.Net.Platform.WindowsPhone8.SQLitePlatformWP8(),
+                .Register<IJsonSerializer, Xamarin.Forms.Labs.Services.Serialization.JsonNET.JsonSerializer>()
+                .Register<IDependencyContainer>(resolverContainer)
+                .Register<IXFormsApp>(app)
+                .Register<ISimpleCache>(t => new SQLiteSimpleCache(new SQLite.Net.Platform.WindowsPhone8.SQLitePlatformWP8(),
                     new SQLite.Net.SQLiteConnectionString(pathToDatabase, true), t.Resolve<IJsonSerializer>()));
 
 
             Resolver.SetResolver(resolverContainer.GetResolver());
         }
-
-        public async Task<string> GetPathForFileAsync(string file)
-        {
-            StorageFile storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(file, CreationCollisionOption.OpenIfExists);
-
-            return storageFile.Path;
-        }
+        
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
