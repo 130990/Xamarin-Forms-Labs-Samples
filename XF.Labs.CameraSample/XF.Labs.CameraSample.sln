@@ -69,6 +69,6 @@ Global
 		{A99C4B9B-37A3-4762-A7F7-4006C5AF8062}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\XF.Labs.CameraSample.iOS.csproj
+		StartupItem = Android\XF.Labs.CameraSample.Android.csproj
 	EndGlobalSection
 EndGlobal

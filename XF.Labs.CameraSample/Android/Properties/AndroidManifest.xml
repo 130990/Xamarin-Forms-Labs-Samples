@@ -3,4 +3,5 @@
 	<uses-sdk />
 	<application android:label="XF.Labs.CameraSample.Android">
 	</application>
+	<uses-permission android:name="android.permission.CAMERA" />
 </manifest>
